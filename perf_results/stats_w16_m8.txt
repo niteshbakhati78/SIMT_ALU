@@ -1,0 +1,10 @@
+cycles=5000
+instructions=5000
+stall_data=0
+stall_structural=0
+stall_memory=0
+stall_no_warp=0
+cycles_issuing=5000
+wb_count=4992
+total_diverge_events=0
+masked_thread_cycles=0

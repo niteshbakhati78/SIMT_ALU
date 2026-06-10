@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find c:/Users/MODERN/Documents/SIMT_ALU -name Makefile -o -name *.tcl -o -name *.f -o -name *.do -o -name *.cfg)",
+      "Bash(where iverilog:*)",
+      "Bash(where vvp:*)",
+      "Bash(where vsim:*)",
+      "Bash(where vcs:*)",
+      "Bash(where xvlog:*)",
+      "Bash(grep \"^module\" head -5 c:/Users/MODERN/Documents/SIMT_ALU/testbench/phase2.5/tb_exec_mask_update.sv)",
+      "Bash(grep \"^module\" head -5 c:/Users/MODERN/Documents/SIMT_ALU/testbench/phase3/tb_simt_stack_phase3.sv)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vlib work:*)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vlog -sv rtl/pkg/simt_alu_pkg.sv rtl/core/simt_alu.sv rtl/core/exec_pipe.sv rtl/control/warp_scheduler.sv rtl/control/wrap_table.sv rtl/control/scoreboard.sv rtl/control/pdom_ctrl.sv rtl/control/simt_stack.sv rtl/top/mini_sm_top.sv testbench/phase4/tb_divergence_phase4.sv)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vlog -sv rtl/pkg/simt_alu_pkg.sv rtl/top/simt_alu.sv rtl/core/exec_pipe.sv rtl/core/simt_stack.sv rtl/control/warp_scheduler.sv rtl/control/wrap_table.sv rtl/control/scoreboard.sv rtl/control/pdom_ctrl.sv rtl/top/mini_sm_top.sv testbench/phase4/tb_divergence_phase4.sv)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vsim -c -do \"run -all; quit\" tb_divergence_phase4)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vlog -sv rtl/pkg/simt_alu_pkg.sv rtl/core/simt_stack.sv rtl/core/simd_lane_alu.sv rtl/core/simt_alu_core.sv rtl/top/simt_alu.sv rtl/core/exec_pipe.sv rtl/control/warp_scheduler.sv rtl/control/wrap_table.sv rtl/control/scoreboard.sv rtl/control/pdom_ctrl.sv rtl/top/mini_sm_top.sv testbench/phase4/tb_divergence_phase4.sv)",
+      "Bash(python scripts/perf_sweep.py --outdir perf_results)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vlog -sv /tmp/test_pkg.sv rtl/core/simt_stack.sv rtl/core/simd_lane_alu.sv rtl/core/simt_alu_core.sv rtl/top/simt_alu.sv rtl/core/exec_pipe.sv rtl/control/warp_scheduler.sv rtl/control/wrap_table.sv rtl/control/scoreboard.sv rtl/control/pdom_ctrl.sv rtl/top/mini_sm_top.sv testbench/phase4/tb_perf_sweep.sv)",
+      "Bash(/c/intelFPGA/20.1/modelsim_ase/win32aloem/vsim -c -do \"run -all; quit\" \"+stats_file=perf_results/test_w4_m4.txt\" tb_perf_sweep)"
+    ]
+  }
+}

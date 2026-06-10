@@ -1,0 +1,322 @@
+{
+  "w2_m4": {
+    "cycles": 5000,
+    "instructions": 2000,
+    "stall_data": 3000,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 2000,
+    "wb_count": 1999,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.4,
+    "warp_efficiency": 40.0,
+    "stall_breakdown": {
+      "data_hazard": 60.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w2_m8": {
+    "cycles": 5000,
+    "instructions": 1112,
+    "stall_data": 3888,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 1112,
+    "wb_count": 1110,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.2224,
+    "warp_efficiency": 22.24,
+    "stall_breakdown": {
+      "data_hazard": 77.75999999999999,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w2_m16": {
+    "cycles": 5000,
+    "instructions": 590,
+    "stall_data": 4410,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 590,
+    "wb_count": 588,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.118,
+    "warp_efficiency": 11.799999999999999,
+    "stall_breakdown": {
+      "data_hazard": 88.2,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w2_m32": {
+    "cycles": 5000,
+    "instructions": 304,
+    "stall_data": 4696,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 304,
+    "wb_count": 302,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.0608,
+    "warp_efficiency": 6.08,
+    "stall_breakdown": {
+      "data_hazard": 93.92,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m4": {
+    "cycles": 5000,
+    "instructions": 4000,
+    "stall_data": 1000,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 4000,
+    "wb_count": 3997,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.8,
+    "warp_efficiency": 80.0,
+    "stall_breakdown": {
+      "data_hazard": 20.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m8": {
+    "cycles": 5000,
+    "instructions": 2224,
+    "stall_data": 2776,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 2224,
+    "wb_count": 2220,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.4448,
+    "warp_efficiency": 44.48,
+    "stall_breakdown": {
+      "data_hazard": 55.52,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m16": {
+    "cycles": 5000,
+    "instructions": 1178,
+    "stall_data": 3822,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 1178,
+    "wb_count": 1175,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.2356,
+    "warp_efficiency": 23.56,
+    "stall_breakdown": {
+      "data_hazard": 76.44,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m32": {
+    "cycles": 5000,
+    "instructions": 608,
+    "stall_data": 4392,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 608,
+    "wb_count": 604,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.1216,
+    "warp_efficiency": 12.16,
+    "stall_breakdown": {
+      "data_hazard": 87.83999999999999,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m4": {
+    "cycles": 5000,
+    "instructions": 5000,
+    "stall_data": 0,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 5000,
+    "wb_count": 4996,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 1.0,
+    "warp_efficiency": 100.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m8": {
+    "cycles": 5000,
+    "instructions": 4445,
+    "stall_data": 555,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 4445,
+    "wb_count": 4438,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.889,
+    "warp_efficiency": 88.9,
+    "stall_breakdown": {
+      "data_hazard": 11.1,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m16": {
+    "cycles": 5000,
+    "instructions": 2354,
+    "stall_data": 2646,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 2354,
+    "wb_count": 2347,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.4708,
+    "warp_efficiency": 47.08,
+    "stall_breakdown": {
+      "data_hazard": 52.92,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m32": {
+    "cycles": 5000,
+    "instructions": 1216,
+    "stall_data": 3784,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 1216,
+    "wb_count": 1208,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.2432,
+    "warp_efficiency": 24.32,
+    "stall_breakdown": {
+      "data_hazard": 75.68,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m4": {
+    "cycles": 5000,
+    "instructions": 5000,
+    "stall_data": 0,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 5000,
+    "wb_count": 4996,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 1.0,
+    "warp_efficiency": 100.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m8": {
+    "cycles": 5000,
+    "instructions": 5000,
+    "stall_data": 0,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 5000,
+    "wb_count": 4992,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 1.0,
+    "warp_efficiency": 100.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m16": {
+    "cycles": 5000,
+    "instructions": 4706,
+    "stall_data": 294,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 4706,
+    "wb_count": 4691,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.9412,
+    "warp_efficiency": 94.12,
+    "stall_breakdown": {
+      "data_hazard": 5.88,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m32": {
+    "cycles": 5000,
+    "instructions": 2432,
+    "stall_data": 2568,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 0,
+    "cycles_issuing": 2432,
+    "wb_count": 2416,
+    "total_diverge_events": 0,
+    "masked_thread_cycles": 0,
+    "ipc": 0.4864,
+    "warp_efficiency": 48.64,
+    "stall_breakdown": {
+      "data_hazard": 51.35999999999999,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  }
+}

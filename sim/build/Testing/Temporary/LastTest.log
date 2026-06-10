@@ -1,0 +1,85 @@
+Start testing: Jun 10 11:13 Central Daylight Time
+----------------------------------------------------------
+1/2 Testing: scoreboard
+1/2 Test: scoreboard
+Command: "C:/Users/MODERN/Documents/SIMT_ALU/sim/build/test_scoreboard.exe"
+Directory: C:/Users/MODERN/Documents/SIMT_ALU/sim/build
+"scoreboard" start time: Jun 10 11:13 Central Daylight Time
+Output:
+----------------------------------------------------------
+=== Scoreboard Tests ===
+  PASS  initial: warp0 can issue r0+r1
+  PASS  initial: warp3 can issue r15+r14
+  PASS  initial: same-register source pair OK
+  PASS  warp0 blocked: src0=r5 busy
+  PASS  warp0 blocked: src1=r5 busy
+  PASS  warp0 free: neither src uses r5
+  PASS  blocked before clear
+  PASS  unblocked after clear
+  PASS  warp0 fully blocked
+  PASS  warp1 independent of warp0
+  PASS  warp2 independent
+  PASS  warp3 independent
+  PASS  blocked: both srcs busy
+  PASS  blocked: src1=r7 busy
+  PASS  blocked: src0=r2 busy
+  PASS  free: neither r2 nor r7
+  PASS  still blocked: r7 still busy
+  PASS  free: both cleared
+  PASS  warp 0 clear after reset
+  PASS  warp 1 clear after reset
+  PASS  warp 2 clear after reset
+  PASS  warp 3 clear after reset
+
+  Passed: 22  Failed: 0
+<end of output>
+Test time =   0.41 sec
+----------------------------------------------------------
+Test Passed.
+"scoreboard" end time: Jun 10 11:13 Central Daylight Time
+"scoreboard" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: warp_table
+2/2 Test: warp_table
+Command: "C:/Users/MODERN/Documents/SIMT_ALU/sim/build/test_warp_table.exe"
+Directory: C:/Users/MODERN/Documents/SIMT_ALU/sim/build
+"warp_table" start time: Jun 10 11:13 Central Daylight Time
+Output:
+----------------------------------------------------------
+=== WarpTable Tests ===
+  PASS  warp 0 initially READY
+  PASS  warp 1 initially READY
+  PASS  warp 2 initially READY
+  PASS  warp 3 initially READY
+  PASS  warp2 STALLED after set_stalled
+  PASS  warp0 unaffected by warp2 stall
+  PASS  warp3 unaffected by warp2 stall
+  PASS  warp2 READY after set_ready
+  PASS  warp 0 STALLED
+  PASS  warp 1 STALLED
+  PASS  warp 2 STALLED
+  PASS  warp 3 STALLED
+  PASS  warp 0 READY after reset
+  PASS  warp 1 READY after reset
+  PASS  warp 2 READY after reset
+  PASS  warp 3 READY after reset
+  PASS  double set_stalled: still STALLED
+  PASS  double set_ready: still READY
+  PASS  warp0 STALLED
+  PASS  warp1 READY (untouched)
+  PASS  warp2 STALLED
+  PASS  warp3 READY (untouched)
+  PASS  warp0 back to READY
+  PASS  warp2 still STALLED
+
+  Passed: 24  Failed: 0
+<end of output>
+Test time =   0.07 sec
+----------------------------------------------------------
+Test Passed.
+"warp_table" end time: Jun 10 11:13 Central Daylight Time
+"warp_table" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 10 11:13 Central Daylight Time

@@ -1,0 +1,370 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dc:/Users/MODERN/Documents/SIMT_ALU
+vexec_pipe
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 DXx4 work 12 simt_alu_pkg 0 22 3k>:o]@5UINBLR`k<@?CT2
+Z2 !s110 1779762473
+!i10b 1
+!s100 20WPG9JfZ0QL_[RnoB>N`2
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IoR8Pi:9NTdRC^[R3g:VCJ3
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z5 dC:/Users/MODERN/Documents/SIMT_ALU
+w1779722661
+8rtl/core/exec_pipe.sv
+Frtl/core/exec_pipe.sv
+!i122 56
+L0 11 60
+Z6 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z7 !s108 1779762473.000000
+!s107 testbench/phase4/tb_perf_sweep.sv|rtl/top/mini_sm_top.sv|rtl/control/pdom_ctrl.sv|rtl/control/scoreboard.sv|rtl/control/wrap_table.sv|rtl/control/warp_scheduler.sv|rtl/core/exec_pipe.sv|rtl/top/simt_alu.sv|rtl/core/simt_alu_core.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_stack.sv|C:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv|
+Z8 !s90 -sv|C:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv|rtl/core/simt_stack.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_alu_core.sv|rtl/top/simt_alu.sv|rtl/core/exec_pipe.sv|rtl/control/warp_scheduler.sv|rtl/control/wrap_table.sv|rtl/control/scoreboard.sv|rtl/control/pdom_ctrl.sv|rtl/top/mini_sm_top.sv|testbench/phase4/tb_perf_sweep.sv|
+!i113 1
+o-sv
+Z9 tCvgOpt 0
+vmini_sm_top
+R0
+R1
+R2
+!i10b 1
+!s100 jgflVeOBb]]CGg^<lRXBg3
+R3
+I@1Wo?WSg@=6k?[:Q9BXzf0
+R4
+S1
+R5
+w1779722670
+8rtl/top/mini_sm_top.sv
+Frtl/top/mini_sm_top.sv
+!i122 56
+L0 20 309
+R6
+r1
+!s85 0
+31
+R7
+Z10 !s107 testbench/phase4/tb_perf_sweep.sv|rtl/top/mini_sm_top.sv|rtl/control/pdom_ctrl.sv|rtl/control/scoreboard.sv|rtl/control/wrap_table.sv|rtl/control/warp_scheduler.sv|rtl/core/exec_pipe.sv|rtl/top/simt_alu.sv|rtl/core/simt_alu_core.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_stack.sv|C:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv|
+R8
+!i113 1
+o-sv
+R9
+vpdom_ctrl
+R0
+R1
+R2
+!i10b 1
+!s100 M]201zH<3nFUZQ2W=HioC3
+R3
+I=oG^QPiKVbYg9aNL4Z;S90
+R4
+S1
+R5
+w1779722645
+8rtl/control/pdom_ctrl.sv
+Frtl/control/pdom_ctrl.sv
+!i122 56
+L0 24 137
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vscoreboard
+R0
+R1
+R2
+!i10b 1
+!s100 ]X;;LATNV]k?P:4;d<b4f0
+R3
+IX^6cMCIQeK1B7T@8fDaIH1
+R4
+S1
+R5
+w1779722657
+8rtl/control/scoreboard.sv
+Frtl/control/scoreboard.sv
+!i122 56
+L0 13 63
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vsimd_lane_alu
+R0
+R2
+!i10b 1
+!s100 k^1;dWNeScffEA>H?HNRV0
+R3
+I<P:akNVJ[W1XFJ>IOiGhN1
+R4
+S1
+R5
+w1766978057
+8rtl/core/simd_lane_alu.sv
+Frtl/core/simd_lane_alu.sv
+!i122 56
+L0 6 64
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vsimt_alu
+R0
+R2
+!i10b 1
+!s100 FTih;b[__<P23o;7[lo=>0
+R3
+Ic1EL07E486bB<Tb8om]T[1
+R4
+S1
+R5
+w1766981573
+8rtl/top/simt_alu.sv
+Frtl/top/simt_alu.sv
+!i122 56
+L0 8 54
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vsimt_alu_core
+R0
+R2
+!i10b 1
+!s100 Kj7j9JKF3ZILKQ?eW?B8E3
+R3
+I8UM]IPSDMGKkER7i<Q3Hn2
+R4
+S1
+R5
+w1766981570
+8rtl/core/simt_alu_core.sv
+Frtl/core/simt_alu_core.sv
+!i122 56
+L0 7 63
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+Xsimt_alu_pkg
+R0
+R2
+!i10b 1
+!s100 >QbUdgFLR0iCIJB1<6]`43
+R3
+I3k>:o]@5UINBLR`k<@?CT2
+V3k>:o]@5UINBLR`k<@?CT2
+S1
+R5
+w1779762473
+8C:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv
+FC:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv
+!i122 56
+L0 4 0
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vsimt_stack
+R0
+R2
+!i10b 1
+!s100 zjgzHhK=3]T6COzGkP;oa0
+R3
+IDYQi:`3WPJ42O=7XV6Ai>0
+R4
+S1
+R5
+w1768427241
+8rtl/core/simt_stack.sv
+Frtl/core/simt_stack.sv
+!i122 56
+L0 23 123
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vtb_divergence_phase4
+R0
+DXx4 work 12 simt_alu_pkg 0 22 _SlQ2<GVHYKLgh6[3@;ZL0
+!s110 1779726938
+!i10b 1
+!s100 HinG`;8Y9_MI06Y7V>=eB0
+R3
+IBfki:FAEBXcQkT>RPoaTi3
+R4
+S1
+R5
+w1779726924
+8testbench/phase4/tb_divergence_phase4.sv
+Ftestbench/phase4/tb_divergence_phase4.sv
+!i122 5
+L0 28 399
+R6
+r1
+!s85 0
+31
+!s108 1779726938.000000
+!s107 testbench/phase4/tb_divergence_phase4.sv|rtl/top/mini_sm_top.sv|rtl/control/pdom_ctrl.sv|rtl/control/scoreboard.sv|rtl/control/wrap_table.sv|rtl/control/warp_scheduler.sv|rtl/core/exec_pipe.sv|rtl/top/simt_alu.sv|rtl/core/simt_alu_core.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_stack.sv|rtl/pkg/simt_alu_pkg.sv|
+!s90 -sv|rtl/pkg/simt_alu_pkg.sv|rtl/core/simt_stack.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_alu_core.sv|rtl/top/simt_alu.sv|rtl/core/exec_pipe.sv|rtl/control/warp_scheduler.sv|rtl/control/wrap_table.sv|rtl/control/scoreboard.sv|rtl/control/pdom_ctrl.sv|rtl/top/mini_sm_top.sv|testbench/phase4/tb_divergence_phase4.sv|
+!i113 1
+o-sv
+R9
+vtb_mini_sm_phase4
+R0
+R1
+!s110 1779738549
+!i10b 1
+!s100 3YYgNVh9LeES4W;Dmj5M;0
+R3
+IB;zc9fh2CQG5lAW4W6Jo^3
+R4
+S1
+R5
+w1779722787
+8testbench/phase4/tb_mini_sm_phase4.sv
+Ftestbench/phase4/tb_mini_sm_phase4.sv
+!i122 21
+L0 22 336
+R6
+r1
+!s85 0
+31
+!s108 1779738549.000000
+!s107 testbench/phase4/tb_mini_sm_phase4.sv|rtl/top/mini_sm_top.sv|rtl/control/pdom_ctrl.sv|rtl/control/scoreboard.sv|rtl/control/wrap_table.sv|rtl/control/warp_scheduler.sv|rtl/core/exec_pipe.sv|rtl/top/simt_alu.sv|rtl/core/simt_alu_core.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_stack.sv|C:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv|
+!s90 -sv|C:\Users\MODERN\Documents\SIMT_ALU\perf_results\simt_alu_pkg_sweep.sv|rtl/core/simt_stack.sv|rtl/core/simd_lane_alu.sv|rtl/core/simt_alu_core.sv|rtl/top/simt_alu.sv|rtl/core/exec_pipe.sv|rtl/control/warp_scheduler.sv|rtl/control/wrap_table.sv|rtl/control/scoreboard.sv|rtl/control/pdom_ctrl.sv|rtl/top/mini_sm_top.sv|testbench/phase4/tb_mini_sm_phase4.sv|
+!i113 1
+o-sv
+R9
+vtb_perf_sweep
+R0
+R1
+R2
+!i10b 1
+!s100 ?0WOFbmU;0mY_T<Eg;DzA1
+R3
+INUkM4VR<JU[f[Q=DX>kJT3
+R4
+S1
+R5
+w1779739263
+8testbench/phase4/tb_perf_sweep.sv
+Ftestbench/phase4/tb_perf_sweep.sv
+!i122 56
+L0 18 138
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vwarp_scheduler
+R0
+R1
+R2
+!i10b 1
+!s100 HUag1nn;VJ:B[WlJCjEo?1
+R3
+IiQ`]l?C3Y;b?I5P8oYf0L2
+R4
+S1
+R5
+w1779722650
+8rtl/control/warp_scheduler.sv
+Frtl/control/warp_scheduler.sv
+!i122 56
+L0 9 54
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9
+vwarp_table
+R0
+R1
+R2
+!i10b 1
+!s100 Ti]]>7LFBOoDn2VOO:0l^2
+R3
+I9_i1KUEoYoCfB`_NJ1<:S2
+R4
+S1
+R5
+w1779722653
+8rtl/control/wrap_table.sv
+Frtl/control/wrap_table.sv
+!i122 56
+L0 9 47
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 1
+o-sv
+R9

@@ -1,0 +1,162 @@
+{
+  "w4_m10": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m50": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m100": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w4_m200": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m10": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m50": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m100": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w8_m200": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m10": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m50": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m100": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w16_m200": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w32_m10": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w32_m50": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w32_m100": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  },
+  "w32_m200": {
+    "ipc": 0.0,
+    "warp_efficiency": 0.0,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.0
+    }
+  }
+}
