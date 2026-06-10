@@ -1,0 +1,8 @@
+cycles=585
+instructions=583
+stall_data=0
+stall_structural=0
+stall_memory=0
+stall_no_warp=2
+cycles_issuing=583
+wb_count=579

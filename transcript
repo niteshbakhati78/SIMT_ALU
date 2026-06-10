@@ -1,5 +1,5 @@
-# vsim -c -do "run -all; quit" "+stats_file=C:\Users\MODERN\Documents\SIMT_ALU\perf_results\stats_w16_m32.txt" tb_perf_sweep 
-# Start time: 22:27:54 on May 25,2026
+# vsim -c -do "run -all; quit" "+stats_file=C:\Users\MODERN\Documents\SIMT_ALU\perf_results_rtl\stats_w16_m32.txt" tb_perf_sweep 
+# Start time: 16:48:33 on Jun 10,2026
 # Loading sv_std.std
 # Loading work.simt_alu_pkg
 # Loading work.tb_perf_sweep
@@ -16,5 +16,5 @@
 # run -all
 # ** Note: $finish    : testbench/phase4/tb_perf_sweep.sv(130)
 #    Time: 32775 ns  Iteration: 1  Instance: /tb_perf_sweep
-# End time: 22:27:55 on May 25,2026, Elapsed time: 0:00:01
+# End time: 16:48:33 on Jun 10,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

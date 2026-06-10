@@ -1,0 +1,290 @@
+{
+  "w2_m4": {
+    "cycles": 249,
+    "instructions": 100,
+    "stall_data": 147,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 100,
+    "wb_count": 98,
+    "ipc": 0.40160642570281124,
+    "warp_efficiency": 40.16064257028113,
+    "stall_breakdown": {
+      "data_hazard": 59.036144578313255,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.8032128514056224
+    }
+  },
+  "w2_m8": {
+    "cycles": 297,
+    "instructions": 66,
+    "stall_data": 229,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 66,
+    "wb_count": 64,
+    "ipc": 0.2222222222222222,
+    "warp_efficiency": 22.22222222222222,
+    "stall_breakdown": {
+      "data_hazard": 77.10437710437711,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.6734006734006733
+    }
+  },
+  "w2_m16": {
+    "cycles": 393,
+    "instructions": 46,
+    "stall_data": 345,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 46,
+    "wb_count": 45,
+    "ipc": 0.11704834605597965,
+    "warp_efficiency": 11.704834605597965,
+    "stall_breakdown": {
+      "data_hazard": 87.78625954198473,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.5089058524173028
+    }
+  },
+  "w2_m32": {
+    "cycles": 585,
+    "instructions": 36,
+    "stall_data": 547,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 36,
+    "wb_count": 34,
+    "ipc": 0.06153846153846154,
+    "warp_efficiency": 6.153846153846154,
+    "stall_breakdown": {
+      "data_hazard": 93.5042735042735,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.3418803418803419
+    }
+  },
+  "w4_m4": {
+    "cycles": 297,
+    "instructions": 236,
+    "stall_data": 59,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 236,
+    "wb_count": 233,
+    "ipc": 0.7946127946127947,
+    "warp_efficiency": 79.46127946127946,
+    "stall_breakdown": {
+      "data_hazard": 19.865319865319865,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.6734006734006733
+    }
+  },
+  "w4_m8": {
+    "cycles": 393,
+    "instructions": 176,
+    "stall_data": 215,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 176,
+    "wb_count": 172,
+    "ipc": 0.44783715012722647,
+    "warp_efficiency": 44.783715012722645,
+    "stall_breakdown": {
+      "data_hazard": 54.70737913486005,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.5089058524173028
+    }
+  },
+  "w4_m16": {
+    "cycles": 585,
+    "instructions": 140,
+    "stall_data": 443,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 140,
+    "wb_count": 136,
+    "ipc": 0.23931623931623933,
+    "warp_efficiency": 23.931623931623932,
+    "stall_breakdown": {
+      "data_hazard": 75.72649572649573,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.3418803418803419
+    }
+  },
+  "w4_m32": {
+    "cycles": 969,
+    "instructions": 120,
+    "stall_data": 847,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 120,
+    "wb_count": 116,
+    "ipc": 0.1238390092879257,
+    "warp_efficiency": 12.38390092879257,
+    "stall_breakdown": {
+      "data_hazard": 87.40970072239422,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.20639834881320948
+    }
+  },
+  "w8_m4": {
+    "cycles": 393,
+    "instructions": 391,
+    "stall_data": 0,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 391,
+    "wb_count": 387,
+    "ipc": 0.9949109414758269,
+    "warp_efficiency": 99.49109414758269,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.5089058524173028
+    }
+  },
+  "w8_m8": {
+    "cycles": 585,
+    "instructions": 519,
+    "stall_data": 64,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 519,
+    "wb_count": 512,
+    "ipc": 0.8871794871794871,
+    "warp_efficiency": 88.71794871794872,
+    "stall_breakdown": {
+      "data_hazard": 10.94017094017094,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.3418803418803419
+    }
+  },
+  "w8_m16": {
+    "cycles": 969,
+    "instructions": 456,
+    "stall_data": 511,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 456,
+    "wb_count": 448,
+    "ipc": 0.47058823529411764,
+    "warp_efficiency": 47.05882352941176,
+    "stall_breakdown": {
+      "data_hazard": 52.73477812177503,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.20639834881320948
+    }
+  },
+  "w8_m32": {
+    "cycles": 1737,
+    "instructions": 424,
+    "stall_data": 1311,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 424,
+    "wb_count": 416,
+    "ipc": 0.24409902130109384,
+    "warp_efficiency": 24.409902130109383,
+    "stall_breakdown": {
+      "data_hazard": 75.47495682210709,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.11514104778353484
+    }
+  },
+  "w16_m4": {
+    "cycles": 585,
+    "instructions": 583,
+    "stall_data": 0,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 583,
+    "wb_count": 579,
+    "ipc": 0.9965811965811966,
+    "warp_efficiency": 99.65811965811966,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.3418803418803419
+    }
+  },
+  "w16_m8": {
+    "cycles": 969,
+    "instructions": 967,
+    "stall_data": 0,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 967,
+    "wb_count": 959,
+    "ipc": 0.9979360165118679,
+    "warp_efficiency": 99.79360165118679,
+    "stall_breakdown": {
+      "data_hazard": 0.0,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.20639834881320948
+    }
+  },
+  "w16_m16": {
+    "cycles": 1737,
+    "instructions": 1633,
+    "stall_data": 102,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 1633,
+    "wb_count": 1618,
+    "ipc": 0.9401266551525619,
+    "warp_efficiency": 94.01266551525619,
+    "stall_breakdown": {
+      "data_hazard": 5.872193436960276,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.11514104778353484
+    }
+  },
+  "w16_m32": {
+    "cycles": 3273,
+    "instructions": 1588,
+    "stall_data": 1683,
+    "stall_structural": 0,
+    "stall_memory": 0,
+    "stall_no_warp": 2,
+    "cycles_issuing": 1588,
+    "wb_count": 1573,
+    "ipc": 0.485181790406355,
+    "warp_efficiency": 48.5181790406355,
+    "stall_breakdown": {
+      "data_hazard": 51.42071494042163,
+      "structural": 0.0,
+      "memory_latency": 0.0,
+      "no_ready_warp": 0.061106018942865874
+    }
+  }
+}

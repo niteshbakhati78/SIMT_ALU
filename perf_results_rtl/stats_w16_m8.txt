@@ -1,0 +1,8 @@
+cycles=969
+instructions=967
+stall_data=0
+stall_structural=0
+stall_memory=0
+stall_no_warp=2
+cycles_issuing=967
+wb_count=959

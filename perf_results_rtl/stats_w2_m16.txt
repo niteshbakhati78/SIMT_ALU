@@ -1,0 +1,8 @@
+cycles=393
+instructions=46
+stall_data=345
+stall_structural=0
+stall_memory=0
+stall_no_warp=2
+cycles_issuing=46
+wb_count=45
