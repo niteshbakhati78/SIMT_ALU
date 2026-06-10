@@ -1,47 +1,61 @@
 # SIMT GPU Streaming Multiprocessor Model
 
-A pre-silicon functional model of a GPU Streaming Multiprocessor (SM) front-end, implemented in both **SystemVerilog RTL** and a **cycle-accurate C++ software model**. The project covers warp scheduling, scoreboard-based hazard detection, fixed-latency execution pipelines, and Post-Dominator (PDOM) thread-mask divergence handling.
+A pre-silicon functional model of a GPU Streaming Multiprocessor (SM) front-end,
+implemented in both **SystemVerilog RTL** and a **cycle-accurate C++ software model**.
+The project covers warp scheduling, scoreboard-based hazard detection, fixed-latency
+execution pipelines, and Post-Dominator (PDOM) thread-mask divergence handling.
 
-Built as an architecture exploration testbed to quantify latency hiding, occupancy requirements, and stall behavior across microarchitectural configurations.
+Built as an architecture exploration testbed to quantify latency hiding, occupancy
+requirements, and stall behavior across microarchitectural configurations.
 
 ---
 
 ## Architecture Overview
 
-The SM front-end is composed of five hardware modules that map 1-to-1 between the RTL and C++ model:
+The SM front-end comprises five hardware modules that map 1-to-1 between the RTL
+and the C++ model:
 
 ```
   Warp Instructions
   (one per warp slot)
          |
          v
-  +------+--------+       +-------------+
-  |  WarpScheduler |<------| WarpTable   |  (ready/stalled per warp)
-  |  (round-robin) |       +-------------+
-  +-------+--------+
-          |  issued_warp
-          v
-  +-------+--------+       +-------------+
-  |    Scoreboard  |       |  ExecPipe   |  (shift-register pipeline)
-  |  (busy bits    |<---wb-| depth=L     |
-  |   per warp)    |       +-------------+
-  +----------------+
-          |
-          v
-  +-------+--------+
-  |    PdomCtrl    |  (per warp: THEN-first reconvergence stack)
-  |  active_mask   |
-  +----------------+
-          |
-          v
-     MiniSM (top-level tick() integrates all five modules)
+  +------------------+       +-----------+
+  |  WarpScheduler   |<------| WarpTable |  ready / stalled per warp
+  |  (round-robin)   |       +-----------+
+  +--------+---------+
+           |  issued_warp
+           v
+  +--------+---------+       +-----------+
+  |    Scoreboard    |<--wb--| ExecPipe  |  shift-register, depth = L
+  | (busy bits per   |       +-----------+
+  |  warp/register)  |
+  +------------------+
+           |
+           v
+  +------------------+
+  |    PdomCtrl      |  one instance per warp
+  |  (active_mask,   |  THEN-first reconvergence stack
+  |   PDOM stack)    |
+  +------------------+
+           |
+           v
+     MiniSM  --  top-level tick() integrates all five modules
 ```
 
-**Scheduling policy:** Round-robin across eligible warps. A warp is eligible when it has a pending instruction, is in READY state, and its source registers are not busy in the scoreboard.
+**Scheduling:** Round-robin across eligible warps. A warp is eligible when it has
+a pending instruction, is READY, and its source registers are not busy.
 
-**Hazard policy:** Scoreboard marks the destination register busy on issue. The register is cleared when writeback exits the execution pipeline after `exec_latency` cycles. Read-After-Write (RAW) stalls are enforced by the scheduler checking `can_issue` before the writeback clears the scoreboard.
+**Hazard detection:** Scoreboard marks the destination register busy on issue.
+The register clears when writeback exits the pipeline after `exec_latency` cycles.
+The issue eligibility snapshot is taken *before* writeback clears the scoreboard,
+matching RTL posedge semantics.
 
-**Divergence policy:** THEN-first PDOM. On a divergent branch, the ELSE-path mask is pushed onto the per-warp reconvergence stack and the THEN path executes first. On `path_done`, the stack is popped (one-cycle registered latency modeled in both RTL and C++) and the ELSE path executes. When the stack is empty, the warp reconverges to the full lane mask.
+**Divergence:** THEN-first PDOM. On a divergent branch the ELSE-path mask is pushed
+onto the per-warp reconvergence stack and the THEN path executes first. On
+`path_done` the stack is popped with a one-cycle registered latency (modelled in
+both RTL and C++ via the POP_WAIT FSM state). When the stack is empty the warp
+reconverges to the full lane mask.
 
 ---
 
@@ -49,63 +63,38 @@ The SM front-end is composed of five hardware modules that map 1-to-1 between th
 
 ```
 SIMT_ALU/
-│
-├── rtl/                          SystemVerilog RTL
-│   ├── pkg/
-│   │   └── simt_alu_pkg.sv       Package: parameters, types
-│   ├── basic/                    Full adder, mux, comparator
+├── rtl/
+│   ├── pkg/simt_alu_pkg.sv          Parameters and packed types
+│   ├── basic/                        Full adder, mux, comparator
 │   ├── core/
-│   │   ├── simd_lane_alu.sv      Per-lane ALU (ADD/SUB/AND/OR/XOR/SLT/SLL/SRL)
-│   │   ├── simt_alu_core.sv      8-lane SIMD ALU core
-│   │   ├── simt_stack.sv         Parameterized PDOM stack
-│   │   └── exec_pipe.sv          Fixed-latency execution pipeline
+│   │   ├── simd_lane_alu.sv          8-lane SIMD ALU (ADD/SUB/AND/OR/XOR/SLT/SLL/SRL)
+│   │   ├── simt_alu_core.sv          Lane array
+│   │   ├── simt_stack.sv             Parameterized PDOM stack
+│   │   └── exec_pipe.sv              Fixed-latency execution pipeline
 │   ├── control/
-│   │   ├── warp_scheduler.sv     Round-robin warp arbiter
-│   │   ├── scoreboard.sv         Per-warp register busy bits
-│   │   ├── wrap_table.sv         Warp ready/stalled state
-│   │   └── pdom_ctrl.sv          Per-warp PDOM reconvergence controller
-│   └── top/
-│       └── mini_sm_top.sv        Top-level SM integration
+│   │   ├── warp_scheduler.sv         Round-robin arbiter
+│   │   ├── scoreboard.sv             Per-warp register busy bits
+│   │   ├── wrap_table.sv             Warp ready/stalled state
+│   │   └── pdom_ctrl.sv              Per-warp PDOM reconvergence controller
+│   └── top/mini_sm_top.sv            Top-level SM integration
 │
-├── sim/                          C++ cycle-accurate functional model
-│   ├── include/
-│   │   ├── simt_types.h          Config, InstrMeta, WbResult, PerfCounters
-│   │   ├── scoreboard.h
-│   │   ├── warp_table.h
-│   │   ├── warp_scheduler.h
-│   │   ├── exec_pipe.h
-│   │   ├── mini_sm.h
-│   │   └── pdom_ctrl.h
-│   ├── src/
-│   │   ├── simt_types.cpp        PerfCounters write_file()
-│   │   ├── scoreboard.cpp
-│   │   ├── warp_table.cpp
-│   │   ├── warp_scheduler.cpp
-│   │   ├── exec_pipe.cpp
-│   │   ├── mini_sm.cpp
-│   │   ├── pdom_ctrl.cpp
-│   │   └── main.cpp              CLI binary: mini_sm_sim
-│   ├── tests/
-│   │   ├── test_scoreboard.cpp   22 assertions
-│   │   ├── test_warp_table.cpp   24 assertions
-│   │   ├── test_mini_sm.cpp      14 assertions
-│   │   └── test_divergence.cpp   31 assertions
+├── sim/                              C++ cycle-accurate functional model
+│   ├── include/                      Headers (simt_types, scoreboard, warp_table,
+│   │                                 warp_scheduler, exec_pipe, mini_sm, pdom_ctrl)
+│   ├── src/                          Implementations + main.cpp CLI
+│   ├── tests/                        Directed test suites (91 assertions total)
 │   └── CMakeLists.txt
 │
-├── testbench/                    SystemVerilog testbenches
-│   ├── phase1/                   SIMT ALU directed + random tests
-│   ├── phase2/                   Predicate mask unit
-│   ├── phase2.5/                 Exec mask update
-│   ├── phase3/                   SIMT stack and branch control
+├── testbench/
 │   └── phase4/
-│       ├── tb_mini_sm_phase4.sv  3 directed SM integration tests
-│       ├── tb_divergence_phase4.sv  4 PDOM divergence tests
-│       └── tb_perf_sweep.sv      RAW-heavy sweep workload
+│       ├── tb_mini_sm_phase4.sv      3 directed SM integration tests
+│       ├── tb_divergence_phase4.sv   4 PDOM divergence tests
+│       └── tb_perf_sweep.sv          RAW-heavy sweep workload
 │
-├── scripts/
-│   └── perf_sweep.py             16-config performance sweep driver
-│
-└── Makefile                      ModelSim ASE build targets
+├── scripts/perf_sweep.py             Sweep driver (C++ and ModelSim backends)
+├── perf_results/                     C++ sweep output (plots + per-config stats)
+├── perf_results_rtl/                 ModelSim RTL sweep output
+└── Makefile                          ModelSim ASE build targets
 ```
 
 ---
@@ -115,77 +104,108 @@ SIMT_ALU/
 ### Requirements
 
 - GCC 14+ with C++17 support
-- On Windows: [MSYS2](https://www.msys2.org/) with the `ucrt64` toolchain
+- Windows: [MSYS2](https://www.msys2.org/) ucrt64 toolchain
 
 ```bash
-# Install ucrt64 toolchain via MSYS2 (one time)
-pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake
+# Add to PATH (PowerShell)
+$env:PATH = "C:\msys64\ucrt64\bin;" + $env:PATH
 ```
 
-Add `C:\msys64\ucrt64\bin` to your PATH before building.
-
-### Build
+### Build all binaries
 
 ```bash
 cd sim
-cmake -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-```
 
-This produces four test binaries and the simulation CLI in `sim/build/`.
+g++ -std=c++17 -Wall -O2 -Iinclude src/simt_types.cpp src/scoreboard.cpp src/warp_table.cpp src/warp_scheduler.cpp src/exec_pipe.cpp src/mini_sm.cpp src/pdom_ctrl.cpp tests/test_scoreboard.cpp -o build/test_scoreboard.exe
+
+g++ -std=c++17 -Wall -O2 -Iinclude src/simt_types.cpp src/scoreboard.cpp src/warp_table.cpp src/warp_scheduler.cpp src/exec_pipe.cpp src/mini_sm.cpp src/pdom_ctrl.cpp tests/test_warp_table.cpp -o build/test_warp_table.exe
+
+g++ -std=c++17 -Wall -O2 -Iinclude src/simt_types.cpp src/scoreboard.cpp src/warp_table.cpp src/warp_scheduler.cpp src/exec_pipe.cpp src/mini_sm.cpp src/pdom_ctrl.cpp tests/test_mini_sm.cpp -o build/test_mini_sm.exe
+
+g++ -std=c++17 -Wall -O2 -Iinclude src/simt_types.cpp src/scoreboard.cpp src/warp_table.cpp src/warp_scheduler.cpp src/exec_pipe.cpp src/mini_sm.cpp src/pdom_ctrl.cpp tests/test_divergence.cpp -o build/test_divergence.exe
+
+g++ -std=c++17 -Wall -O2 -Iinclude src/simt_types.cpp src/scoreboard.cpp src/warp_table.cpp src/warp_scheduler.cpp src/exec_pipe.cpp src/mini_sm.cpp src/pdom_ctrl.cpp src/main.cpp -o build/mini_sm_sim.exe
+```
 
 ---
 
 ## Running the Tests
 
-Run each test suite individually:
-
 ```bash
-sim/build/test_scoreboard.exe
-sim/build/test_warp_table.exe
-sim/build/test_mini_sm.exe
-sim/build/test_divergence.exe
+build/test_scoreboard.exe
+build/test_warp_table.exe
+build/test_mini_sm.exe
+build/test_divergence.exe
 ```
 
-Or run all tests through CTest:
+All 91 assertions pass:
 
-```bash
-cd sim/build
-ctest --output-on-failure
 ```
+=== Scoreboard Tests ===       Passed: 22  Failed: 0
+=== WarpTable Tests ===        Passed: 24  Failed: 0
 
-Expected result: **91/91 assertions passing** across all four suites.
+=== Test 1: RAW stall enforcement ===
+  PASS  tick0: I1 issued on warp 0
+  PASS  stalled for exactly EXEC_LATENCY=4 cycles (got 4)
+  PASS  I2 issued after wb cleared r0
+  PASS  stall_data == EXEC_LATENCY (4)
+  PASS  exactly 2 instructions issued
+
+=== Test 2: Multi-warp latency hiding ===
+  PASS  warp 0 never issues during stall window
+  PASS  warp 1 issues 4 times (expected 4)
+  PASS  latency-hiding IPC >= 0.9 in stall window (got 1.000)
+
+=== Test 3: Round-robin fairness ===
+  PASS  round-robin order: 0,1,2,3,0,1,2,3
+  PASS  warp efficiency = 100% (got 100.0%)
+                                 Passed: 14  Failed: 0  RESULT: PASS
+
+=== Test 1: Single-warp branch divergence (THEN-first) ===
+  PASS  tick_B+1: active_mask=0xCA (THEN path)
+  PASS  tick_P+2: active_mask=0x35 (ELSE path after pop)
+  PASS  tick_Q+1: active_mask=0xFF (fully reconverged)
+
+=== Test 4: masked_thread_cycles counter ===
+  PASS  masked_thread_cycles == 5*4=20 (got 20)
+                                 Passed: 31  Failed: 0  RESULT: PASS
+```
 
 | Suite | Assertions | Covers |
 |---|---|---|
 | test_scoreboard | 22 | Busy-bit set/clear, per-warp isolation, reset |
 | test_warp_table | 24 | Ready/stalled transitions, independence, reset |
 | test_mini_sm | 14 | RAW stall enforcement, latency hiding, round-robin fairness |
-| test_divergence | 31 | THEN-first policy, no-divergence path, two-warp independence, masked-thread-cycles counter |
+| test_divergence | 31 | THEN-first policy, no-divergence path, two-warp independence, masked-thread-cycles |
 
 ---
 
-## Running the Performance Sweep
+## Performance Sweep
+
+The sweep runs a RAW-heavy workload where every warp continuously issues
+`r0 + r1 -> r0`. This maximises data-hazard stalls and isolates the
+latency-hiding benefit of increasing warp count.
+
+### C++ backend (fast)
 
 ```bash
-python scripts/perf_sweep.py --cycles 5000
+cd "C:\Users\MODERN\Documents\SIMT_ALU"
+python scripts/perf_sweep.py --simulator cpp --cycles 5000
 ```
 
-This runs the C++ model across all 16 (warp count x execution latency) configurations and writes results to `perf_results/`.
+### ModelSim RTL backend
 
-Optional arguments:
-
-```
---outdir   <path>   output directory for plots and JSON  (default: perf_results)
---cycles   <N>      simulation cycles per data point     (default: 2000)
---sim-binary <path> path to mini_sm_sim binary
+```bash
+python scripts/perf_sweep.py --simulator modelsim
 ```
 
-### Workload
+Results are saved to `perf_results/` (C++) and `perf_results_rtl/` (RTL).
 
-All warps continuously issue the instruction `r0 + r1 -> r0`. This creates the maximum possible RAW stall pressure: every warp writes `r0` on each issue and must wait `exec_latency` cycles before it can read `r0` again. This workload isolates the latency-hiding benefit of increasing warp count.
+---
 
-### Sweep Results (5000 cycles per point)
+## Sweep Results
+
+### C++ model (5000 cycles per configuration)
 
 ```
  Warps   EL=4    EL=8   EL=16   EL=32
@@ -195,41 +215,51 @@ All warps continuously issue the instruction `r0 + r1 -> r0`. This creates the m
     16  1.000   1.000   0.941   0.486
 ```
 
-IPC follows the analytical bound `W / (L + 1)` (capped at 1.0), where W is warp count and L is execution latency. Key findings:
-
-- 8 warps fully hide a 4-cycle execution latency, achieving 1.0 IPC (2.5x over single-warp)
-- 16 warps are required to approach saturation at 16-cycle depth (0.94 IPC)
-- At EL=32, even 16 warps only recover 48.6% efficiency, indicating occupancy is the binding constraint
-
-The sweep completes in under 1 second. An equivalent ModelSim RTL simulation of the same configurations takes approximately 3 minutes.
-
-### Output Files
+### ModelSim RTL simulation
 
 ```
-perf_results/
-├── raw_results.json            all stats for all 16 configurations
-├── stats_w<W>_m<L>.txt         per-point stats (cycles, IPC, stall breakdown)
-├── ipc_vs_warps.png            IPC scaling curves with theoretical overlay
-├── stall_breakdown_heatmap.png stall type breakdown as % of cycles
-└── warp_efficiency.png         warp efficiency vs warp count
+ Warps   EL=4    EL=8   EL=16   EL=32
+     2  0.402   0.222   0.117   0.062
+     4  0.795   0.448   0.239   0.124
+     8  0.995   0.887   0.471   0.244
+    16  0.997   0.998   0.940   0.485
 ```
+
+The small differences between the two backends are startup transients — the RTL
+testbench runs fewer total cycles per configuration, so the ramp-up period has
+slightly more weight. Both converge to the same steady-state IPC values.
+
+### Key findings
+
+- **8 warps fully hide a 4-cycle execution latency** (IPC 1.000 vs 0.400 for a
+  single warp — 2.5x improvement)
+- **16 warps are required to approach saturation at 16-cycle depth** (IPC 0.941)
+- At EL=32, even 16 warps recover only 48.6% efficiency — occupancy becomes the
+  binding constraint
+- Data hazard stalls are the only stall type observed (100% of stall cycles),
+  confirming the workload is purely RAW-bound
+- IPC follows the analytical bound `W / (L + 1)` capped at 1.0, where W is warp
+  count and L is execution latency
+
+### Plots
+
+| C++ model | RTL (ModelSim) |
+|---|---|
+| ![IPC vs Warps](perf_results/ipc_vs_warps.png) | ![IPC vs Warps RTL](perf_results_rtl/ipc_vs_warps.png) |
+| ![Stall Heatmap](perf_results/stall_breakdown_heatmap.png) | ![Stall Heatmap RTL](perf_results_rtl/stall_breakdown_heatmap.png) |
+| ![Warp Efficiency](perf_results/warp_efficiency.png) | ![Warp Efficiency RTL](perf_results_rtl/warp_efficiency.png) |
 
 ---
 
-## Running the RTL Simulation (ModelSim ASE)
+## RTL Simulation (ModelSim ASE)
 
-Requires Intel ModelSim ASE installed at `C:/intelFPGA/20.1/modelsim_ase/`.
+Requires Intel ModelSim ASE at `C:/intelFPGA/20.1/modelsim_ase/`.
 
 ```bash
-# Run a specific phase
 make phase4        # Mini-SM integration tests
 make divergence    # PDOM divergence tests
-
-# Run all phases
-make all
+make all           # All phases
 ```
-
-Available targets:
 
 | Target | Testbench | Description |
 |---|---|---|
@@ -245,47 +275,56 @@ Available targets:
 
 ## Key Design Decisions
 
-**Posedge-correct tick() ordering in the C++ model**
-
-The `MiniSM::tick()` method snapshots `can_issue` from the scoreboard *before* calling `exec_pipe_.tick()` and updating the scoreboard. This matches the RTL `always_ff` semantics where the issue decision is based on the pre-posedge scoreboard state, and writeback clears the register in the same cycle the snapshot was already taken. Reversing this order would allow a warp to issue one cycle too early.
+**Posedge-correct tick() ordering**
+The `MiniSM::tick()` method snapshots `can_issue` from the scoreboard *before*
+calling `exec_pipe_.tick()`. This matches the RTL `always_ff` semantics where the
+issue decision uses the pre-posedge scoreboard state. Reversing this order would
+allow a warp to issue one cycle too early, breaking RAW hazard enforcement.
 
 **One-cycle pop latency in PdomCtrl**
-
-The RTL `simt_stack` module has registered outputs: the popped mask is available one cycle after the pop signal is asserted. `PdomCtrl` models this with a `POP_WAIT` FSM state that saves the popped entry in `pop_pending_` during the path-done cycle and applies it to `curr_mask` on the following cycle. This is why the active mask reflects the ELSE path two ticks after `path_done`, not one.
+The RTL `simt_stack` has registered outputs — the popped mask is available one
+cycle after the pop signal is asserted. `PdomCtrl` models this with a `POP_WAIT`
+FSM state that saves the popped entry in `pop_pending_` and applies it to
+`curr_mask` on the following cycle. The active mask therefore reflects the ELSE
+path two ticks after `path_done`, not one.
 
 **THEN-first divergence policy**
-
-When a branch produces both a non-zero then-mask and a non-zero else-mask, the ELSE-path mask is pushed onto the PDOM stack and the THEN path executes immediately. This matches the execution model used in NVIDIA GPU architectures where the taken path runs first.
+When a branch produces both a non-zero then-mask and a non-zero else-mask, the
+ELSE-path mask is pushed onto the PDOM stack and the THEN path executes
+immediately, matching the execution model used in NVIDIA GPU architectures.
 
 **Runtime-parameterized Config**
-
-All hardware parameters (warp count, register count, lane count, execution latency, PDOM stack depth) are runtime values stored in a `Config` struct rather than compile-time templates. This allows the same binary to sweep all configurations without recompilation, which is the key enabler for the fast Python sweep.
+All hardware parameters (warp count, register count, lane count, execution
+latency, PDOM stack depth) are runtime values in a `Config` struct rather than
+compile-time templates. The same binary sweeps all 16 configurations without
+recompilation — the key enabler for the sub-second sweep time.
 
 ---
 
-## Performance Model vs RTL Parity
+## C++ Model vs RTL Parity
 
-The C++ model and SystemVerilog RTL produce identical behavior on all shared test scenarios:
-
-| Scenario | RTL result | C++ model result |
+| Scenario | RTL | C++ model |
 |---|---|---|
-| RAW stall cycles (EL=4) | 4 stall cycles | 4 stall cycles |
-| THEN-path mask (cond=0xCA) | 0xCA | 0xCA |
-| ELSE-path mask after pop | 0x35 | 0x35 |
+| RAW stall cycles (EL=4, 1 warp) | 4 stall cycles | 4 stall cycles |
+| THEN-path mask (cond=0xCA, mask=0xFF) | 0xCA | 0xCA |
+| ELSE-path mask after PDOM pop | 0x35 | 0x35 |
 | Round-robin order (4 warps) | 0,1,2,3,0,1,2,3 | 0,1,2,3,0,1,2,3 |
-| IPC at W=8, EL=4 (RTL sweep) | 0.995 | 1.000 |
+| IPC at W=8, EL=4 | 0.995 | 1.000 |
+| IPC at W=16, EL=16 | 0.940 | 0.941 |
+| IPC at W=2, EL=8 | 0.222 | 0.222 |
 
-The small IPC difference at W=8/EL=4 is due to startup transients in the RTL sweep running fewer total cycles. Both converge to the same steady-state value.
+The small IPC differences are startup transients from the RTL testbench running
+fewer total cycles. Steady-state values match exactly.
 
 ---
 
 ## Skills Demonstrated
 
-- Cycle-accurate hardware modeling in C++ (functional parity with RTL)
+- Cycle-accurate hardware modeling in C++ with RTL behavioral parity
 - SystemVerilog RTL design and simulation (ModelSim ASE)
-- Scoreboard-based hazard detection and warp scheduling
-- PDOM thread-mask divergence handling
-- Structured test plan development and directed verification
+- Scoreboard-based RAW hazard detection and warp scheduling
+- PDOM thread-mask divergence and reconvergence
+- Structured test plan development and directed verification (91 assertions)
 - Performance telemetry instrumentation (IPC, warp efficiency, stall classification)
 - Python-driven microarchitectural sweep and analysis
 - CMake build system and cross-platform toolchain configuration
